@@ -1,8 +1,8 @@
-import type { AuthApiHandler } from 'types'
+import type { AuthApiHandler, CreateUserParams } from 'types'
 
 import nc from 'next-connect'
-import auth from '../../middleware/auth'
-import { deleteUser, updateUserByUsername } from '../../lib/db'
+import auth from 'src/middleware/auth'
+import { deleteUser, updateUserByUsername } from 'src/lib/db'
 
 const handler: AuthApiHandler = nc()
 

@@ -4,9 +4,7 @@ tsconfig.tsbuildinfo
 .log
 .DS_Store
 .jest-*
-lib
 dist
-bin
 node_modules
 reports
 *.log

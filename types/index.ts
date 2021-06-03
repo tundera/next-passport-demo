@@ -20,14 +20,20 @@ export declare type PageComponent<P = {}, IP = P> = NextPage<P, IP> & {
 
 export interface User {
   id: string
-  createdAt: Date
+  createdAt: number
   username: string
   name: string
   hash: string
   salt: string
 }
 
-interface AuthApiRequest extends NextApiRequest {
+export type CreateUserParams = {
+  username: string
+  password: string
+  name: string
+}
+
+export interface AuthApiRequest extends NextApiRequest {
   user: User
   logIn: any
   logOut: any

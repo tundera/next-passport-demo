@@ -1,14 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
-import passport from '../lib/passport'
-import session from '../lib/session'
 
-interface ExtendedRequest extends NextApiRequest {
-  session: any
-}
+import passport from 'src/lib/passport'
+import session from 'src/lib/session'
 
-const auth = nc<ExtendedRequest, NextApiRequest>()
+const auth: AuthApiHandler = nc()
+
+auth
   .use(
     session({
       name: 'sess',

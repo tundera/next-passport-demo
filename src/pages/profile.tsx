@@ -1,8 +1,21 @@
+import type { PageComponent } from 'types'
+
 import { useEffect, useRef } from 'react'
 import Router from 'next/router'
-import { chakra, Flex, Input, FormControl, FormLabel, ButtonGroup, Button } from '@chakra-ui/react'
+import {
+  chakra,
+  Flex,
+  Input,
+  FormControl,
+  FormLabel,
+  Heading,
+  Text,
+  ButtonGroup,
+  Button,
+} from '@chakra-ui/react'
 
 import { useUser } from 'src/lib/hooks'
+import { getLayout } from 'src/layouts/MainLayout'
 
 function ProfileEdit() {
   const [user, { mutate }] = useUser()
@@ -64,7 +77,7 @@ function ProfileEdit() {
   )
 }
 
-export default function ProfilePage() {
+const ProfilePage: PageComponent = () => {
   const [user, { loading }] = useUser()
 
   useEffect(() => {
@@ -74,22 +87,19 @@ export default function ProfilePage() {
 
   return (
     <>
-      <h1>Profile</h1>
+      <Heading as="h1">Profile</Heading>
 
       {user && (
         <>
-          <p>Your session:</p>
+          <Text>Your session:</Text>
           <pre>{JSON.stringify(user, null, 2)}</pre>
           <ProfileEdit />
         </>
       )}
-
-      <style jsx>{`
-        pre {
-          white-space: pre-wrap;
-          word-wrap: break-word;
-        }
-      `}</style>
     </>
   )
 }
+
+ProfilePage.getLayout = getLayout
+
+export default ProfilePage
