@@ -8,13 +8,17 @@ export async function createLoginSession(session, secret) {
   return token
 }
 
+export async function getRefreshToken() {
+  // Implement refresh logic here
+}
+
 export async function getLoginSession(token, secret) {
   const session = await Iron.unseal(token, secret, Iron.defaults)
   const expiresAt = session.createdAt + session.maxAge * 1000
 
   // Validate the expiration date of the session
   if (session.maxAge && Date.now() > expiresAt) {
-    throw new Error('Session expired')
+    return await getRefreshToken()
   }
 
   return session

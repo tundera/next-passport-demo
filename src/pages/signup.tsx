@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
 import { useUser } from 'src/lib/hooks'
-import { ButtonGroup, Button, Input, Flex, FormControl, FormLabel } from '@chakra-ui/react'
+import { ButtonGroup, Button, Input, Heading, Flex, FormControl, FormLabel } from '@chakra-ui/react'
 import { getLayout } from 'src/layouts/MainLayout'
 
 const SignupPage: PageComponent = () => {
@@ -47,7 +47,9 @@ const SignupPage: PageComponent = () => {
 
   return (
     <>
-      <h1>Sign up to Example</h1>
+      <Heading as="h1" my="4">
+        Sign Up
+      </Heading>
       {errorMsg && <p className="error">{errorMsg}</p>}
 
       <form action="#" autoComplete="off" onSubmit={onSubmit}>

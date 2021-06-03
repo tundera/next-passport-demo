@@ -1,7 +1,7 @@
 import type { User } from 'types'
 
 import passport from 'passport'
-import { Strategy as LocalStrategy } from 'passport-local'
+import Local from 'passport-local'
 
 import { findUserByUsername, validatePassword } from 'src/lib/db'
 
@@ -18,7 +18,7 @@ passport.deserializeUser(function (req, id, done) {
 })
 
 passport.use(
-  new LocalStrategy({ passReqToCallback: true }, (req, username, password, done) => {
+  new Local.Strategy({ passReqToCallback: true }, (req, username, password, done) => {
     // Here you lookup the user in your DB and compare the password/hashed password
     const user = findUserByUsername(req, username)
     // Security-wise, if you hashed the password earlier, you must verify it

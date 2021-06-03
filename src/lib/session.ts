@@ -1,6 +1,12 @@
 import { parse, serialize } from 'cookie'
 import { createLoginSession, getLoginSession } from './auth'
 
+type SessionParams = {
+  name: string
+  secret: string
+  cookie: any
+}
+
 function parseCookies(req) {
   // For API Routes we don't need to parse the cookies.
   if (req.cookies) return req.cookies
@@ -10,13 +16,7 @@ function parseCookies(req) {
   return parse(cookie || '')
 }
 
-type SessionParams =    {
-  name:string
-  secret: string
-  cookie: any
-}
-
- const session = ({ name, secret, cookie: cookieOpts }: SessionParams) =>{
+const session = ({ name, secret, cookie: cookieOpts }: SessionParams) => {
   return async (req, res, next) => {
     const cookies = parseCookies(req)
     const token = cookies[name]
