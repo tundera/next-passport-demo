@@ -38,7 +38,7 @@ const Navigation: FC<Props> = ({ disclosure }) => {
         display={{ base: 'none', md: 'inline-flex' }}
       >
         <NavButton to="/">Home</NavButton>
-        <NavButton to="/about">About</NavButton>
+        {user && <NavButton to="/profile">Profile</NavButton>}
       </HStack>
       <HStack
         spacing={1}
@@ -92,19 +92,17 @@ const Navigation: FC<Props> = ({ disclosure }) => {
             <CloseButton aria-label="Close menu" onClick={disclosure.onClose} />
 
             <NavButton to="/">Home</NavButton>
-            <NavButton to="/about">About</NavButton>
-            <NavButton to="/blog">Blog</NavButton>
-            <NavButton to="/store">Store</NavButton>
+            {user && <NavButton to="/profile">Profile</NavButton>}
             {user ? (
-              <NextLink href="/login" passHref>
-                <Button as="a" w="100%" variant="ghost">
-                  Sign in
-                </Button>
-              </NextLink>
-            ) : (
               <NextLink href="/logout" passHref>
                 <Button as="a" w="100%" variant="ghost">
                   Sign out
+                </Button>
+              </NextLink>
+            ) : (
+              <NextLink href="/login" passHref>
+                <Button as="a" w="100%" variant="ghost">
+                  Sign in
                 </Button>
               </NextLink>
             )}
