@@ -1,10 +1,12 @@
+import type { CookieSerializeOptions } from 'cookie'
+
 import { parseCookies, setCookie } from 'nookies'
 import { createLoginSession, getLoginSession } from 'src/lib/auth'
 
 type SessionParams = {
   name: string
   secret: string
-  cookie: any
+  cookie: CookieSerializeOptions
 }
 
 const session = ({ name, secret, cookie: cookieOpts }: SessionParams) => {
