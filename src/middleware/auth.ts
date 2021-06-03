@@ -2,8 +2,8 @@ import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
 
-import passport from 'src/lib/passport'
-import session from 'src/lib/session'
+import passport from 'src/middleware/passport'
+import session from 'src/middleware/session'
 
 const auth: AuthApiHandler = nc()
 

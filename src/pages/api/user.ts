@@ -31,7 +31,7 @@ handler
   })
   .delete((req, res) => {
     deleteUser(req)
-    req.logOut()
+    req.logout()
     res.status(204).end()
   })
 

@@ -35,9 +35,9 @@ export type CreateUserParams = {
 
 export interface AuthApiRequest extends NextApiRequest {
   user: User
-  logIn: any
-  logOut: any
-  signUp: any
+  login: any
+  logout: any
+  signup: any
   session: any
 }
 

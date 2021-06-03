@@ -6,7 +6,7 @@ import auth from '../../middleware/auth'
 const handler: AuthApiHandler = nc()
 
 handler.use(auth).get((req, res) => {
-  req.logOut()
+  req.logout()
   res.status(204).end()
 })
 
