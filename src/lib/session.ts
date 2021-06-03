@@ -1,5 +1,5 @@
-import { parse, serialize } from 'cookie'
-import { createLoginSession, getLoginSession } from './auth'
+import { parseCookies, setCookie } from 'nookies'
+import { createLoginSession, getLoginSession } from 'src/lib/auth'
 
 type SessionParams = {
   name: string
@@ -7,18 +7,9 @@ type SessionParams = {
   cookie: any
 }
 
-function parseCookies(req) {
-  // For API Routes we don't need to parse the cookies.
-  if (req.cookies) return req.cookies
-
-  // For pages we do need to parse the cookies.
-  const cookie = req.headers?.cookie
-  return parse(cookie || '')
-}
-
 const session = ({ name, secret, cookie: cookieOpts }: SessionParams) => {
   return async (req, res, next) => {
-    const cookies = parseCookies(req)
+    const cookies = parseCookies({ req })
     const token = cookies[name]
     let unsealed = {}
 
@@ -43,7 +34,7 @@ const session = ({ name, secret, cookie: cookieOpts }: SessionParams) => {
 
       const token = await createLoginSession(req.session, secret)
 
-      res.setHeader('Set-Cookie', serialize(name, token, cookieOpts))
+      setCookie({ res }, name, token, cookieOpts)
       oldEnd.apply(this, args)
     }
 

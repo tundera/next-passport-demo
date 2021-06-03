@@ -8,8 +8,19 @@ export async function createLoginSession(session, secret) {
   return token
 }
 
-export async function getRefreshToken() {
+export async function updateRefreshToken(session) {
   // Implement refresh logic here
+  // const {
+  //   accessToken,
+  //   refreshToken,
+  //   expiresIn
+  //  } = await refreshMutation({ input: session.refreshToken })
+  // return {
+  //   ...session
+  //   accessToken,
+  //   refreshToken,
+  //   expiresIn
+  // }
 }
 
 export async function getLoginSession(token, secret) {
@@ -18,7 +29,7 @@ export async function getLoginSession(token, secret) {
 
   // Validate the expiration date of the session
   if (session.maxAge && Date.now() > expiresAt) {
-    return await getRefreshToken()
+    return await updateRefreshToken(session)
   }
 
   return session

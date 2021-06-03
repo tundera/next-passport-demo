@@ -1,4 +1,4 @@
-import type { AuthApiHandler, CreateUserParams } from 'types'
+import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
 import auth from 'src/middleware/auth'
