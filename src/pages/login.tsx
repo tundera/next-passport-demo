@@ -15,7 +15,7 @@ import {
   Input,
   VisuallyHidden,
 } from '@chakra-ui/react'
-import { FaUser, FaLock } from 'react-icons/fa'
+import { User, Lock } from 'react-feather'
 
 import { useUser } from 'src/lib/hooks'
 import { getLayout } from 'src/layouts/MainLayout'
@@ -66,7 +66,7 @@ const LoginPage: PageComponent = () => {
             </VisuallyHidden>
             <Flex position="relative" alignItems="center" justifyContent="space-between">
               <chakra.span mr="4">
-                <FaUser size="25" />
+                <User size="25" />
               </chakra.span>
               <Input
                 type="text"
@@ -83,7 +83,7 @@ const LoginPage: PageComponent = () => {
             </VisuallyHidden>
             <Flex position="relative" alignItems="center" justifyContent="space-between">
               <chakra.span mr="4">
-                <FaLock size="25" />
+                <Lock size="25" />
               </chakra.span>
               <Input
                 type="password"

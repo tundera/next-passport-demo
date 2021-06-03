@@ -1,7 +1,7 @@
 import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 import Emoji from 'a11y-react-emoji'
 import { FC } from 'react'
-import { FaGithub, FaEnvelope, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { Mail, GitHub, Twitter, Youtube } from 'react-feather'
 import MediaIconLink from 'src/components/MediaIconLink'
 
 const Footer: FC = () => {
@@ -22,22 +22,22 @@ const Footer: FC = () => {
         <MediaIconLink
           href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`}
           title="Twitter"
-          icon={<FaTwitter size="20" />}
+          icon={<Twitter size="20" />}
         />
         <MediaIconLink
           href={`https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`}
           title="GitHub"
-          icon={<FaGithub size="20" />}
+          icon={<GitHub size="20" />}
         />
         <MediaIconLink
           href={`https://www.youtube.com/channel/${process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL}`}
           title="YouTube"
-          icon={<FaYoutube size="20" />}
+          icon={<Youtube size="20" />}
         />
         <MediaIconLink
           href={`mailto:${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`}
           title="Email"
-          icon={<FaEnvelope size="20" />}
+          icon={<Mail size="20" />}
         />
       </Box>
       <Text mt={2} mb={4} fontWeight="bold">

@@ -55,7 +55,7 @@ const Header: FC = ({ ...props }) => {
             <VisuallyHidden>sherbet</VisuallyHidden>
           </chakra.a>
           <chakra.h1 fontSize="2xl" fontWeight="bold">
-            Next.js Auth Demo
+            Auth Demo
           </chakra.h1>
         </Flex>
         <Navigation disclosure={mobileNav} />

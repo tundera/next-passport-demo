@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { FC } from 'react'
-import { FaHamburger } from 'react-icons/fa'
+import { Menu } from 'react-feather'
 import NavButton from 'src/components/NavButton'
 import SettingsButton from 'src/components/SettingsButton'
 import DarkModeToggle from 'src/components/DarkModeToggle'
@@ -72,7 +72,7 @@ const Navigation: FC<Props> = ({ disclosure }) => {
           fontSize="20px"
           color={iconColor}
           variant="ghost"
-          icon={<FaHamburger />}
+          icon={<Menu />}
           onClick={disclosure.onOpen}
         />
         <Slide direction="top" in={disclosure.isOpen} style={{ zIndex: 30 }}>
@@ -95,11 +95,19 @@ const Navigation: FC<Props> = ({ disclosure }) => {
             <NavButton to="/about">About</NavButton>
             <NavButton to="/blog">Blog</NavButton>
             <NavButton to="/store">Store</NavButton>
-            <NextLink href="/login" passHref>
-              <Button as="a" w="100%" variant="ghost">
-                Sign in
-              </Button>
-            </NextLink>
+            {user ? (
+              <NextLink href="/login" passHref>
+                <Button as="a" w="100%" variant="ghost">
+                  Sign in
+                </Button>
+              </NextLink>
+            ) : (
+              <NextLink href="/logout" passHref>
+                <Button as="a" w="100%" variant="ghost">
+                  Sign out
+                </Button>
+              </NextLink>
+            )}
 
             <HStack>
               <DarkModeToggle />

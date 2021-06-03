@@ -13,12 +13,10 @@ import {
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { FaUser } from 'react-icons/fa'
+import { User } from 'react-feather'
 import { useUser } from 'src/lib/hooks'
 
 const SettingsButton: FC = () => {
-  const router = useRouter()
   const [user, { mutate }] = useUser()
 
   const color = useColorModeValue('brand.500', 'whiteAlpha.900')
@@ -37,7 +35,7 @@ const SettingsButton: FC = () => {
         <MenuButton
           as={IconButton}
           aria-label={'Account icon dropdown'}
-          icon={<FaUser size="20" />}
+          icon={<User size="20" />}
           size="sm"
           color={color}
           _hover={{ bgBlendMode: 'difference', bgColor: 'gray.300', color: hoverColor }}

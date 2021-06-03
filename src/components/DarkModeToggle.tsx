@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import { IconButton, Tooltip, useColorMode, useColorModeValue } from '@chakra-ui/react'
-import { FaMoon, FaSun } from 'react-icons/fa'
+import { Moon, Sun } from 'react-feather'
 
 const DarkModeToggle: FC = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -17,7 +17,7 @@ const DarkModeToggle: FC = () => {
         isRound
         variant="ghost"
         color={color}
-        icon={colorMode === 'light' ? <FaMoon size="20" /> : <FaSun size="20" />}
+        icon={colorMode === 'light' ? <Moon size="20" /> : <Sun size="20" />}
         onClick={toggleColorMode}
       />
     </Tooltip>
