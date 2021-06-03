@@ -2,13 +2,14 @@ import type { PageComponent } from 'types'
 
 import Head from 'next/head'
 import useSWR from 'swr'
-import { SimpleGrid, Flex, Box, Heading } from '@chakra-ui/react'
+import { SimpleGrid, Flex, Box, Heading, useColorModeValue } from '@chakra-ui/react'
 import { getLayout } from 'src/layouts/MainLayout'
 
 import { useUser, fetcher } from 'src/lib/hooks'
 
 const HomePage: PageComponent = () => {
   const { data: { users } = {} } = useSWR('/api/users', fetcher)
+  const tileBgColor = useColorModeValue('blue.200', 'blue.600')
 
   return (
     <>
@@ -26,11 +27,12 @@ const HomePage: PageComponent = () => {
           {users.map((user) => (
             <Box
               key={user.username}
-              bg="blue.200"
+              bg={tileBgColor}
               p="2"
               overflowX="scroll"
-              borderRadius="4"
-              outline="2px solid red"
+              borderRadius="32"
+              borderColor="red.400"
+              borderWidth="4px"
             >
               <pre>{JSON.stringify(user, null, 2)}</pre>
             </Box>

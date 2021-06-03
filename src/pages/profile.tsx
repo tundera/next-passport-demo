@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
 import Router from 'next/router'
-import { useUser } from '../lib/hooks'
+import { chakra, Flex, Input, FormControl, FormLabel, ButtonGroup, Button } from '@chakra-ui/react'
+
+import { useUser } from 'src/lib/hooks'
 
 function ProfileEdit() {
   const [user, { mutate }] = useUser()
@@ -42,28 +44,22 @@ function ProfileEdit() {
   return (
     <>
       <div className="form-container">
-        <form onSubmit={handleEditProfile}>
-          <label>
-            <span>Name</span>
-            <input type="text" ref={nameRef} required />
-          </label>
-          <div className="submit">
-            <button type="submit">Update profile</button>
-            <a role="button" className="delete" onClick={handleDeleteProfile}>
-              Delete profile
-            </a>
-          </div>
+        <form action="#" autoComplete="off" onSubmit={handleEditProfile}>
+          <FormControl>
+            <FormLabel>
+              <chakra.span>Name</chakra.span>
+            </FormLabel>
+            <Input type="text" ref={nameRef} required />
+          </FormControl>
+
+          <Flex justifyContent="center">
+            <ButtonGroup spacing="4">
+              <Button type="submit">Update profile</Button>
+              <Button onClick={handleDeleteProfile}>Delete profile</Button>
+            </ButtonGroup>
+          </Flex>
         </form>
       </div>
-      <style jsx>{`
-        .delete {
-          color: #f44336;
-          cursor: pointer;
-        }
-        .delete:hover {
-          color: #b71c1c;
-        }
-      `}</style>
     </>
   )
 }

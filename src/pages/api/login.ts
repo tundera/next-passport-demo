@@ -1,14 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
-import auth from '../../middleware/auth'
-import passport from '../../lib/passport'
 
-interface ExtendedRequest extends NextApiRequest {
-  user: any
-}
+import auth from 'src/middleware/auth'
+import passport from 'src/lib/passport'
 
-const handler = nc<ExtendedRequest, NextApiResponse>()
+const handler: AuthApiHandler = nc()
 
 handler.use(auth).post(passport.authenticate('local'), (req, res) => {
   res.json({ user: req.user })

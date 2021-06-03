@@ -1,0 +1,17 @@
+node_modules
+out
+*.css
+**/coverage
+reports
+*.log
+tsconfig.tsbuildinfo
+**/.next/**
+**/dist/**
+**/.vercel/**
+**/.test*
+**/codegen.ts
+
+/__mocks__
+/__fixtures
+/assets
+/patches

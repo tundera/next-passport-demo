@@ -33,10 +33,10 @@ const SettingsButton: FC = () => {
 
   return (
     <Menu>
-      <Tooltip hasArrow label="Settings ⚙️">
+      <Tooltip hasArrow label="Account ⚙️">
         <MenuButton
           as={IconButton}
-          aria-label={'Settings icon dropdown'}
+          aria-label={'Account icon dropdown'}
           icon={<FaUser size="20" />}
           size="sm"
           color={color}
@@ -46,28 +46,8 @@ const SettingsButton: FC = () => {
       </Tooltip>
 
       <MenuList bg={bg}>
-        <MenuGroup title="Settings">
-          <MenuItem
-            onClick={() => router.push('/dashboard')}
-            _focus={{ color: hoverColor, bg: hoverBg }}
-            _hover={{ color: hoverColor, bg: hoverBg }}
-          >
-            <Flex justify="space-between" w="full">
-              <Text>Dashboard</Text>
-              {/* <Avatar
-                size="sm"
-                name={session?.user?.name as string}
-                src={session?.user?.image as string}
-              /> */}
-            </Flex>
-          </MenuItem>
-          <MenuItem
-            onClick={() => router.push('/account')}
-            _focus={{ color: hoverColor, bg: hoverBg }}
-            _hover={{ color: hoverColor, bg: hoverBg }}
-          >
-            <Text>Account</Text>
-          </MenuItem>
+        <MenuGroup title="Account">
+          <Text fontSize="xs">Hi, {user.name}</Text>
           <MenuItem
             onClick={() => handleLogout()}
             _focus={{ color: hoverColor, bg: hoverBg }}

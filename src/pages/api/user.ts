@@ -1,15 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
 import auth from '../../middleware/auth'
 import { deleteUser, updateUserByUsername } from '../../lib/db'
 
-interface ExtendedRequest extends NextApiRequest {
-  user: any
-  logOut: any
-}
-
-const handler = nc<ExtendedRequest, NextApiResponse>()
+const handler: AuthApiHandler = nc()
 
 handler
   .use(auth)

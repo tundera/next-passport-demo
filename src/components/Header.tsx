@@ -26,7 +26,6 @@ const StickyFlex = styled(chakra.header)`
 `
 
 const Header: FC = ({ ...props }) => {
-  // const [session] = useSession()
   const bg = useColorModeValue('white', 'brand.700')
   const mobileNav = useDisclosure()
   const iconColor = useColorModeValue('brand.500', 'white')
@@ -56,10 +55,10 @@ const Header: FC = ({ ...props }) => {
             <VisuallyHidden>sherbet</VisuallyHidden>
           </chakra.a>
           <chakra.h1 fontSize="2xl" fontWeight="bold">
-            sherbet
+            Next.js Auth Demo
           </chakra.h1>
         </Flex>
-        <Navigation session={null} disclosure={mobileNav} />
+        <Navigation disclosure={mobileNav} />
       </Flex>
     </StickyFlex>
   )

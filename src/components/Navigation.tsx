@@ -39,8 +39,6 @@ const Navigation: FC<Props> = ({ disclosure }) => {
       >
         <NavButton to="/">Home</NavButton>
         <NavButton to="/about">About</NavButton>
-        <NavButton to="/blog">Blog</NavButton>
-        <NavButton to="/store">Store</NavButton>
       </HStack>
       <HStack
         spacing={1}

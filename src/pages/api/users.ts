@@ -1,16 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
-import auth from '../../middleware/auth'
-import { getAllUsers, createUser, findUserByUsername } from '../../lib/db'
+import auth from 'src/middleware/auth'
+import { getAllUsers, createUser, findUserByUsername } from 'src/lib/db'
 
-interface ExtendedRequest extends NextApiRequest {
-  logIn: any
-  signUp: any
-  session: any
-}
-
-const handler = nc<ExtendedRequest, NextApiResponse>()
+const handler: AuthApiHandler = nc()
 
 handler
   .use(auth)
