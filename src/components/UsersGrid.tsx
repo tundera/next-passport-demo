@@ -15,18 +15,18 @@ const UsersGrid: FC<Props> = ({ users }) => {
     <SimpleGrid columns={[2, null, 3]} spacing="8" mx="40">
       {users.map(({ id, name, username }) => (
         <MotionBox
+          w="40"
           key={id}
           bg={bg}
-          p="2"
-          overflowX="scroll"
           borderRadius="32"
           borderColor="brand.500"
           borderWidth="4px"
           boxShadow="lg"
-          whileHover={{ scale: '1.1' }}
-          whileTap={{ scale: '0.9' }}
+          animate={{ opacity: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
-          <Stack align="center">
+          <Stack align="center" py="4">
             <Text fontSize="xl">{name}</Text>
             <Tag>{username}</Tag>
           </Stack>

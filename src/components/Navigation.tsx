@@ -5,13 +5,18 @@ import {
   HStack,
   IconButton,
   Slide,
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuButton,
+  useOutsideClick,
   useColorModeValue,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { FC } from 'react'
-import { Menu } from 'react-feather'
+import { FC, useRef } from 'react'
+import { Menu as MenuIcon } from 'react-feather'
 import NavButton from 'src/components/NavButton'
 import SettingsButton from 'src/components/SettingsButton'
 import DarkModeToggle from 'src/components/DarkModeToggle'
@@ -23,11 +28,17 @@ interface Props {
 }
 
 const Navigation: FC<Props> = ({ disclosure }) => {
+  const ref = useRef()
   const { data } = useCurrentUser()
 
   const bg = useColorModeValue('whiteAlpha.900', 'indigo.700')
   const color = useColorModeValue('indigo.500', 'whiteAlpha.900')
   const iconColor = useColorModeValue('gray.800', 'inherit')
+
+  useOutsideClick({
+    ref: ref,
+    handler: disclosure.onClose,
+  })
 
   return (
     <HStack display="flex" alignItems="center" spacing={1}>
@@ -72,10 +83,10 @@ const Navigation: FC<Props> = ({ disclosure }) => {
           fontSize="20px"
           color={iconColor}
           variant="ghost"
-          icon={<Menu />}
+          icon={<MenuIcon />}
           onClick={disclosure.onOpen}
         />
-        <Slide direction="top" in={disclosure.isOpen} style={{ zIndex: 30 }}>
+        <Slide ref={ref} direction="top" in={disclosure.isOpen} style={{ zIndex: 30 }}>
           <VStack
             top={0}
             left={0}
@@ -91,17 +102,27 @@ const Navigation: FC<Props> = ({ disclosure }) => {
           >
             <CloseButton aria-label="Close menu" onClick={disclosure.onClose} />
 
-            <NavButton to="/">Home</NavButton>
-            {data && <NavButton to="/profile">Profile</NavButton>}
+            <NextLink href="/" passHref>
+              <Button as="a" w="full" variant="ghost" onClick={disclosure.onClose}>
+                Home
+              </Button>
+            </NextLink>
+            {data && (
+              <NextLink href="/profile" passHref>
+                <Button as="a" w="full" variant="ghost" onClick={disclosure.onClose}>
+                  Profile
+                </Button>
+              </NextLink>
+            )}
             {data ? (
               <NextLink href="/logout" passHref>
-                <Button as="a" w="100%" variant="ghost">
+                <Button as="a" w="full" variant="ghost" onClick={disclosure.onClose}>
                   Sign Out
                 </Button>
               </NextLink>
             ) : (
               <NextLink href="/login" passHref>
-                <Button as="a" w="100%" variant="ghost">
+                <Button as="a" w="full" variant="ghost" onClick={disclosure.onClose}>
                   Sign In
                 </Button>
               </NextLink>
