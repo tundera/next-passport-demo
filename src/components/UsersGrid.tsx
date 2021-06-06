@@ -23,7 +23,7 @@ const UsersGrid: FC<Props> = ({ users }) => {
           borderColor="brand.500"
           borderWidth="4px"
           boxShadow="lg"
-          whileHover={{ scale: '1.1', elevation: '1.5' }}
+          whileHover={{ scale: '1.1' }}
           whileTap={{ scale: '0.9' }}
         >
           <Stack align="center">

@@ -6,11 +6,14 @@ import Link from 'next/link'
 import { useUser } from 'src/lib/hooks'
 import { ButtonGroup, Button, Input, Heading, Flex, FormControl, FormLabel } from '@chakra-ui/react'
 import { getLayout } from 'src/layouts/MainLayout'
+import { useQueryClient, useMutation } from 'react-query'
 
 const SignupPage: PageComponent = () => {
-  const [user, { mutate }] = useUser()
+  const { data: user } = useUser()
+  const queryClient = useQueryClient()
   const [errorMsg, setErrorMsg] = useState('')
 
+  const mutation = useMutation()
   async function onSubmit(e) {
     e.preventDefault()
 
@@ -25,19 +28,23 @@ const SignupPage: PageComponent = () => {
       return
     }
 
-    const res = await fetch('/api/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    })
+    const updateUsers = async () => {
+      const res = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
 
-    if (res.status === 201) {
-      const userObj = await res.json()
-      // set user to useSWR state
-      mutate(userObj)
-    } else {
-      setErrorMsg(await res.text())
+      if (res.status === 201) {
+        const account = await res.json()
+
+        setQueryData('account', account)
+      } else {
+        setErrorMsg(await res.text())
+      }
     }
+
+    await updateUsers()
   }
 
   useEffect(() => {

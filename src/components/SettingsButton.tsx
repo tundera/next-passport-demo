@@ -13,20 +13,49 @@ import {
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react'
+import { useQueryClient, useMutation } from 'react-query'
 import { User } from 'react-feather'
 import { useUser } from 'src/lib/hooks'
 
 const SettingsButton: FC = () => {
-  const [user, { mutate }] = useUser()
-
   const color = useColorModeValue('brand.500', 'whiteAlpha.900')
   const bg = useColorModeValue('whiteAlpha.900', 'brand.800')
   const hoverColor = useColorModeValue('whiteAlpha.900', 'brand.800')
   const hoverBg = useColorModeValue('brand.800', 'whiteAlpha.900')
 
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation(() => fetch('/api/logout'), {
+    onMutate: async () => {
+      // Stop the queries that may affect this operation
+      await queryClient.cancelQueries('account')
+
+      // Get a snapshot of current data
+      const snapshotOfAccount = queryClient.getQueryData('account')
+
+      // Modify cache to reflect this optimistic update
+      queryClient.setQueryData('account', null)
+
+      // Return a snapshot so we can rollback in case of failure
+      return {
+        snapshotOfAccount,
+      }
+    },
+    onError: (error, tweetId, { snapshotOfAccount }) => {
+      // Rollback the changes using the snapshot
+      queryClient.setQueryData('account', snapshotOfAccount)
+    },
+
+    onSuccess() {
+      // Refetch or invalidate related queries
+      queryClient.invalidateQueries('account')
+    },
+  })
+
+  const { data: user } = useUser()
+
   async function handleLogout() {
-    await fetch('/api/logout')
-    mutate({ user: null })
+    mutation.mutate()
   }
 
   return (

@@ -19,18 +19,19 @@ import { User, Lock } from 'react-feather'
 
 import { useUser } from 'src/lib/hooks'
 import { getLayout } from 'src/layouts/MainLayout'
+import { useQueryClient, useMutation } from 'react-query'
+
+type LoginInput = {
+  username: string
+  password: string
+}
 
 const LoginPage: PageComponent = () => {
-  const [user, { mutate }] = useUser()
+  const { data: user } = useUser()
+  const queryClient = useQueryClient()
   const [errorMsg, setErrorMsg] = useState('')
 
-  async function onSubmit(e) {
-    e.preventDefault()
-
-    const body = {
-      username: e.currentTarget.username.value,
-      password: e.currentTarget.password.value,
-    }
+  const login = async (body: LoginInput) => {
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -38,12 +39,28 @@ const LoginPage: PageComponent = () => {
     })
 
     if (res.status === 200) {
-      const userObj = await res.json()
-      // set user to useSWR state
-      mutate(userObj)
+      const { user } = await res.json()
+      return user
     } else {
       setErrorMsg('Incorrect username or password. Try better!')
     }
+  }
+
+  const mutation = useMutation(login, {
+    onSuccess: (user) => {
+      queryClient.setQueryData('account', user)
+    },
+  })
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+
+    const body = {
+      username: e.currentTarget.username.value,
+      password: e.currentTarget.password.value,
+    }
+
+    mutation.mutate(body)
   }
 
   useEffect(() => {
@@ -58,7 +75,7 @@ const LoginPage: PageComponent = () => {
       </Heading>
       {errorMsg && <p className="error">{errorMsg}</p>}
 
-      <form action="#" autoComplete="off" onSubmit={onSubmit}>
+      <form action="#" autoComplete="off" onSubmit={handleSubmit}>
         <Stack spacing="4">
           <FormControl isInvalid={!errorMsg}>
             <VisuallyHidden>

@@ -1,6 +1,7 @@
 import type { PageComponent } from 'types'
 
 import { useEffect, useRef } from 'react'
+import { useQueryClient } from 'react-query'
 import Router from 'next/router'
 import {
   chakra,
@@ -18,8 +19,10 @@ import { useUser } from 'src/lib/hooks'
 import { getLayout } from 'src/layouts/MainLayout'
 
 function ProfileEdit() {
-  const [user, { mutate }] = useUser()
   const nameRef = useRef<HTMLInputElement>()
+  const { data: user } = useUser()
+
+  const { setQueryData } = useQueryClient()
 
   useEffect(() => {
     if (!user) return
@@ -40,7 +43,7 @@ function ProfileEdit() {
     })
     const updatedUser = await res.json()
 
-    mutate(updatedUser)
+    setQueryData('account', updatedUser)
   }
 
   async function handleDeleteProfile() {
@@ -49,7 +52,7 @@ function ProfileEdit() {
     })
 
     if (res.status === 204) {
-      mutate({ user: null })
+      setQueryData('account', { user: null })
       Router.replace('/')
     }
   }
@@ -78,12 +81,12 @@ function ProfileEdit() {
 }
 
 const ProfilePage: PageComponent = () => {
-  const [user, { loading }] = useUser()
+  const { data: user, isLoading } = useUser()
 
   useEffect(() => {
     // redirect user to login if not authenticated
-    if (!loading && !user) Router.replace('/login')
-  }, [user, loading])
+    if (!isLoading && !user) Router.replace('/login')
+  }, [user, isLoading])
 
   return (
     <>

@@ -23,7 +23,7 @@ interface Props {
 }
 
 const Navigation: FC<Props> = ({ disclosure }) => {
-  const [user] = useUser()
+  const { data } = useUser()
 
   const bg = useColorModeValue('whiteAlpha.900', 'indigo.700')
   const color = useColorModeValue('indigo.500', 'whiteAlpha.900')
@@ -38,7 +38,7 @@ const Navigation: FC<Props> = ({ disclosure }) => {
         display={{ base: 'none', md: 'inline-flex' }}
       >
         <NavButton to="/">Home</NavButton>
-        {user && <NavButton to="/profile">Profile</NavButton>}
+        {data && <NavButton to="/profile">Profile</NavButton>}
       </HStack>
       <HStack
         spacing={1}
@@ -46,7 +46,7 @@ const Navigation: FC<Props> = ({ disclosure }) => {
         color={useColorModeValue('indigo.500', 'whiteAlpha.900')}
         display={{ base: 'none', md: 'inline-flex' }}
       >
-        {user ? (
+        {data ? (
           <HStack spacing={3} display={disclosure.isOpen ? 'none' : 'flex'} alignItems="center">
             <SettingsButton />
             <DarkModeToggle />
@@ -92,8 +92,8 @@ const Navigation: FC<Props> = ({ disclosure }) => {
             <CloseButton aria-label="Close menu" onClick={disclosure.onClose} />
 
             <NavButton to="/">Home</NavButton>
-            {user && <NavButton to="/profile">Profile</NavButton>}
-            {user ? (
+            {data && <NavButton to="/profile">Profile</NavButton>}
+            {data ? (
               <NextLink href="/logout" passHref>
                 <Button as="a" w="100%" variant="ghost">
                   Sign out

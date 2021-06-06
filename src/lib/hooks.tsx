@@ -1,11 +1,29 @@
-import useSWR from 'swr'
+import type { User } from 'types'
 
-export const fetcher = (url: string) => fetch(url).then((r) => r.json())
+import { useQuery, useMutation } from 'react-query'
+
+export const getUser = async () => {
+  const response = await fetch('/api/user')
+  const { user } = await response.json()
+
+  return user
+}
+
+export const getUsers = async () => {
+  const response = await fetch('/api/users')
+  const { users } = await response.json()
+
+  return users
+}
 
 export function useUser() {
-  const { data, mutate } = useSWR('/api/user', fetcher)
-  // if data is not defined, the query has not completed
-  const loading = !data
-  const user = data?.user
-  return [user, { mutate, loading }]
+  const query = useQuery<User>('account', getUser)
+
+  return { ...query }
+}
+
+export function useUsers() {
+  const query = useQuery<User[]>('users', getUsers)
+
+  return { ...query }
 }

@@ -1,15 +1,14 @@
 import type { PageComponent } from 'types'
 
 import Head from 'next/head'
-import useSWR from 'swr'
-import { SimpleGrid, Flex, Box, Stack, Heading, useColorModeValue } from '@chakra-ui/react'
+import { Stack, Heading } from '@chakra-ui/react'
 
 import { getLayout } from 'src/layouts/MainLayout'
 import UsersGrid from 'src/components/UsersGrid'
-import { useUser, fetcher } from 'src/lib/hooks'
+import { useUsers } from 'src/lib/hooks'
 
 const HomePage: PageComponent = () => {
-  const { data: { users } = {} } = useSWR('/api/users', fetcher)
+  const { data: users } = useUsers()
 
   return (
     <>
