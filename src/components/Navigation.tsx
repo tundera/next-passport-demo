@@ -96,13 +96,13 @@ const Navigation: FC<Props> = ({ disclosure }) => {
             {data ? (
               <NextLink href="/logout" passHref>
                 <Button as="a" w="100%" variant="ghost">
-                  Sign out
+                  Sign Out
                 </Button>
               </NextLink>
             ) : (
               <NextLink href="/login" passHref>
                 <Button as="a" w="100%" variant="ghost">
-                  Sign in
+                  Sign In
                 </Button>
               </NextLink>
             )}

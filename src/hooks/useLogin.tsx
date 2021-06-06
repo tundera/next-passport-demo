@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from 'react-query'
 
 type LoginFormData = {
   username: string
-  passwored: string
+  password: string
 }
 
 const useLogin = () => {

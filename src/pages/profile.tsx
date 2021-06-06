@@ -1,7 +1,6 @@
 import type { PageComponent } from 'types'
 
-import { useEffect, useRef } from 'react'
-import { useQueryClient } from 'react-query'
+import { useEffect } from 'react'
 import Router from 'next/router'
 import {
   chakra,
@@ -9,41 +8,41 @@ import {
   Input,
   FormControl,
   FormLabel,
-  Heading,
-  Text,
+  FormErrorMessage,
   ButtonGroup,
   Button,
 } from '@chakra-ui/react'
+import { useQueryClient } from 'react-query'
+import { useForm } from 'react-hook-form'
 
-import { useCurrentUser } from 'src/lib/hooks'
 import { getLayout } from 'src/layouts/MainLayout'
+import { useCurrentUser } from 'src/lib/hooks'
+import useProfile from 'src/hooks/useProfile'
 
-function ProfileEdit() {
-  const nameRef = useRef<HTMLInputElement>()
+type ProfileEditInputs = {
+  name: string
+}
+
+const ProfilePage: PageComponent = () => {
   const { data: user } = useCurrentUser()
+  const { handleSubmit, register, formState, setValue } = useForm<ProfileEditInputs>()
 
-  const { setQueryData } = useQueryClient()
+  const queryClient = useQueryClient()
 
   useEffect(() => {
-    if (!user) return
-
-    nameRef.current.value = user.name
+    if (user) setValue('name', user.name)
   }, [user])
 
-  async function handleEditProfile(e) {
-    e.preventDefault()
+  const mutation = useProfile()
 
-    const body = {
-      name: nameRef.current.value,
-    }
-    const res = await fetch(`/api/user`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    })
-    const updatedUser = await res.json()
+  function validateName(value: string | undefined) {
+    if (!value) {
+      return 'Name is required'
+    } else return true
+  }
 
-    setQueryData('currentUser', updatedUser)
+  async function onSubmit(data) {
+    mutation.mutate(data)
   }
 
   async function handleDeleteProfile() {
@@ -52,7 +51,7 @@ function ProfileEdit() {
     })
 
     if (res.status === 204) {
-      setQueryData('currentUser', { user: null })
+      queryClient.setQueryData('currentUser', { user: null })
       Router.replace('/')
     }
   }
@@ -60,45 +59,29 @@ function ProfileEdit() {
   return (
     <>
       <div className="form-container">
-        <form action="#" autoComplete="off" onSubmit={handleEditProfile}>
+        <form action="#" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
           <FormControl>
             <FormLabel>
               <chakra.span>Name</chakra.span>
             </FormLabel>
-            <Input type="text" ref={nameRef} required />
+            <Input type="text" required {...register('name', { validate: validateName })} />
+            {formState.errors.name && formState.touchedFields.name && (
+              <Flex justifyContent="center">
+                <FormErrorMessage>{formState.errors.name?.message}</FormErrorMessage>
+              </Flex>
+            )}
           </FormControl>
 
           <Flex justifyContent="center">
             <ButtonGroup spacing="4">
-              <Button type="submit">Update profile</Button>
+              <Button type="submit" isLoading={formState.isSubmitting}>
+                Update Profile
+              </Button>
               <Button onClick={handleDeleteProfile}>Delete profile</Button>
             </ButtonGroup>
           </Flex>
         </form>
       </div>
-    </>
-  )
-}
-
-const ProfilePage: PageComponent = () => {
-  const { data: user, isLoading } = useCurrentUser()
-
-  useEffect(() => {
-    // redirect user to login if not authenticated
-    if (!isLoading && !user) Router.replace('/login')
-  }, [user, isLoading])
-
-  return (
-    <>
-      <Heading as="h1">Profile</Heading>
-
-      {user && (
-        <>
-          <Text>Your session:</Text>
-          <pre>{JSON.stringify(user, null, 2)}</pre>
-          <ProfileEdit />
-        </>
-      )}
     </>
   )
 }
