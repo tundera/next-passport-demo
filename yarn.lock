@@ -1155,6 +1155,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "@hookform/resolvers@npm:2.5.2"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 2f64847c424eccab82261843b24e4d0e41c97236e7275ee16248f5c50923460c4c7eb8a5b7cc40a40c49d964444961fc1e28f9b5250bfba0a9fed7a911d52c2f
+  languageName: node
+  linkType: hard
+
 "@next/env@npm:10.2.3":
   version: 10.2.3
   resolution: "@next/env@npm:10.2.3"
@@ -4222,6 +4231,7 @@ fsevents@~2.3.1:
     "@emotion/react": ^11.4.0
     "@emotion/styled": ^11.3.0
     "@hapi/iron": 6.0.0
+    "@hookform/resolvers": ^2.5.2
     "@types/express-session": ^1
     "@types/node": ^15.6.2
     "@types/passport": ^0
@@ -4245,6 +4255,7 @@ fsevents@~2.3.1:
     react-dom: ^17.0.2
     react-error-boundary: ^3.1.3
     react-feather: ^2.0.9
+    react-hook-form: ^7.8.1
     react-query: ^3.16.0
     swr: ^0.5.6
     typescript: ^4.3.2
@@ -5056,6 +5067,15 @@ fsevents@~2.3.1:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0
   checksum: 4a86e44cb46dc54caef485f476f4462dedffad7cdb7f80c1ae5e5127311ea3b166366481b664bf732fe893f31c647cb6267ad833bd58f046062235383747ee2b
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.8.1":
+  version: 7.8.1
+  resolution: "react-hook-form@npm:7.8.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17
+  checksum: 8eb67a49c2a27853397f55b51c18d1640ed65236cd4b53d630f1428625016fb6d51928652d420dd654eef5ff4e8467b37859a8ca410969243ec2ce484807bb92
   languageName: node
   linkType: hard
 

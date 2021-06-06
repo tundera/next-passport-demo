@@ -16,14 +16,14 @@ import NavButton from 'src/components/NavButton'
 import SettingsButton from 'src/components/SettingsButton'
 import DarkModeToggle from 'src/components/DarkModeToggle'
 import LocaleButton from 'src/components/LocaleButton'
-import { useUser } from 'src/lib/hooks'
+import { useCurrentUser } from 'src/lib/hooks'
 
 interface Props {
   disclosure: ReturnType<typeof useDisclosure>
 }
 
 const Navigation: FC<Props> = ({ disclosure }) => {
-  const { data } = useUser()
+  const { data } = useCurrentUser()
 
   const bg = useColorModeValue('whiteAlpha.900', 'indigo.700')
   const color = useColorModeValue('indigo.500', 'whiteAlpha.900')

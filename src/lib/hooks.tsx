@@ -16,8 +16,8 @@ export const getUsers = async () => {
   return users
 }
 
-export function useUser() {
-  const query = useQuery<User>('account', getUser)
+export function useCurrentUser() {
+  const query = useQuery<User>('currentUser', getUser)
 
   return { ...query }
 }

@@ -15,12 +15,12 @@ import {
   Button,
 } from '@chakra-ui/react'
 
-import { useUser } from 'src/lib/hooks'
+import { useCurrentUser } from 'src/lib/hooks'
 import { getLayout } from 'src/layouts/MainLayout'
 
 function ProfileEdit() {
   const nameRef = useRef<HTMLInputElement>()
-  const { data: user } = useUser()
+  const { data: user } = useCurrentUser()
 
   const { setQueryData } = useQueryClient()
 
@@ -43,7 +43,7 @@ function ProfileEdit() {
     })
     const updatedUser = await res.json()
 
-    setQueryData('account', updatedUser)
+    setQueryData('currentUser', updatedUser)
   }
 
   async function handleDeleteProfile() {
@@ -52,7 +52,7 @@ function ProfileEdit() {
     })
 
     if (res.status === 204) {
-      setQueryData('account', { user: null })
+      setQueryData('currentUser', { user: null })
       Router.replace('/')
     }
   }
@@ -81,7 +81,7 @@ function ProfileEdit() {
 }
 
 const ProfilePage: PageComponent = () => {
-  const { data: user, isLoading } = useUser()
+  const { data: user, isLoading } = useCurrentUser()
 
   useEffect(() => {
     // redirect user to login if not authenticated
