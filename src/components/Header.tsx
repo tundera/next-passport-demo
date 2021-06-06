@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 
 import { chakra, Flex, useColorModeValue, useDisclosure, VisuallyHidden } from '@chakra-ui/react'
-import { createIcon } from '@chakra-ui/icon'
+import { createIcon } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
 import Navigation from 'src/components/Navigation'
