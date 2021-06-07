@@ -27,6 +27,7 @@ const useSignUp = () => {
   const mutation = useMutation(signUp, {
     onSuccess: (data) => {
       console.log('New User:', data)
+      queryClient.refetchQueries({ queryKey: 'currentUser' })
     },
   })
 
