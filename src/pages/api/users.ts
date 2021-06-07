@@ -1,6 +1,7 @@
 import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
+
 import auth from 'src/middleware/auth'
 import { getAllUsers, createUser, findUserByUsername } from 'src/lib/db'
 

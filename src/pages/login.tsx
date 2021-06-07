@@ -1,7 +1,6 @@
 import type { PageComponent } from 'types'
-import type { FormEvent } from 'react'
 
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
 import {

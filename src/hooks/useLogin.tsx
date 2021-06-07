@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 
 type LoginFormData = {
@@ -6,10 +7,10 @@ type LoginFormData = {
 }
 
 const useLogin = () => {
+  const [errorMessage, setErrorMessage] = useState<string>()
   const queryClient = useQueryClient()
 
   const logIn = async (data: LoginFormData) => {
-    console.log('here')
     try {
       const res = await fetch('/api/login', {
         method: 'POST',
@@ -29,6 +30,9 @@ const useLogin = () => {
   }
 
   const mutation = useMutation(logIn, {
+    onError: (error: Error) => {
+      setErrorMessage(error.message)
+    },
     onSuccess: (data) => {
       queryClient.setQueryData('currentUser', data)
     },
