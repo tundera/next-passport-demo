@@ -1,8 +1,6 @@
 import type { FC } from 'react'
 
 import {
-  Avatar,
-  Flex,
   IconButton,
   Menu,
   MenuButton,
@@ -13,9 +11,9 @@ import {
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { useQueryClient, useMutation } from 'react-query'
 import { User } from 'react-feather'
 import { useCurrentUser } from 'src/lib/hooks'
+import useLogout from 'src/hooks/useLogout'
 
 const SettingsButton: FC = () => {
   const color = useColorModeValue('brand.500', 'whiteAlpha.900')
@@ -23,36 +21,9 @@ const SettingsButton: FC = () => {
   const hoverColor = useColorModeValue('whiteAlpha.900', 'brand.800')
   const hoverBg = useColorModeValue('brand.800', 'whiteAlpha.900')
 
-  const queryClient = useQueryClient()
-
-  const mutation = useMutation(() => fetch('/api/logout'), {
-    onMutate: async () => {
-      // Stop the queries that may affect this operation
-      await queryClient.cancelQueries('currentUser')
-
-      // Get a snapshot of current data
-      const snapshotOfAccount = queryClient.getQueryData('currentUser')
-
-      // Modify cache to reflect this optimistic update
-      queryClient.setQueryData('currentUser', null)
-
-      // Return a snapshot so we can rollback in case of failure
-      return {
-        snapshotOfAccount,
-      }
-    },
-    onError: (error, tweetId, { snapshotOfAccount }) => {
-      // Rollback the changes using the snapshot
-      queryClient.setQueryData('currentUser', snapshotOfAccount)
-    },
-
-    onSuccess() {
-      // Refetch or invalidate related queries
-      queryClient.invalidateQueries('currentUser')
-    },
-  })
-
   const { data: user } = useCurrentUser()
+
+  const mutation = useLogout()
 
   async function handleLogout() {
     mutation.mutate()
@@ -76,7 +47,7 @@ const SettingsButton: FC = () => {
         <MenuGroup title="Account">
           <Text fontSize="xs">Hi, {user.name}</Text>
           <MenuItem
-            onClick={() => handleLogout()}
+            onClick={handleLogout}
             _focus={{ color: hoverColor, bg: hoverBg }}
             _hover={{ color: hoverColor, bg: hoverBg }}
           >

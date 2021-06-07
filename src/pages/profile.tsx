@@ -13,11 +13,11 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { useQueryClient } from 'react-query'
-import { useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { getLayout } from 'src/layouts/MainLayout'
 import { useCurrentUser } from 'src/lib/hooks'
-import useProfile from 'src/hooks/useProfile'
+import useProfileEdit from 'src/hooks/useProfileEdit'
 
 type ProfileEditInputs = {
   name: string
@@ -33,7 +33,7 @@ const ProfilePage: PageComponent = () => {
     if (user) setValue('name', user.name)
   }, [user])
 
-  const mutation = useProfile()
+  const mutation = useProfileEdit()
 
   function validateName(value: string | undefined) {
     if (!value) {
@@ -41,7 +41,7 @@ const ProfilePage: PageComponent = () => {
     } else return true
   }
 
-  async function onSubmit(data) {
+  const onSubmit: SubmitHandler<ProfileEditInputs> = (data) => {
     mutation.mutate(data)
   }
 

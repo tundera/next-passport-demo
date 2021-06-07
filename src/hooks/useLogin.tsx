@@ -9,6 +9,7 @@ const useLogin = () => {
   const queryClient = useQueryClient()
 
   const logIn = async (data: LoginFormData) => {
+    console.log('here')
     try {
       const res = await fetch('/api/login', {
         method: 'POST',

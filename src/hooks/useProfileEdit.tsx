@@ -2,21 +2,22 @@ import { useRouter } from 'next/router'
 import { useMutation, useQueryClient } from 'react-query'
 
 type ProfileEditFormData = {
-  username: string
-  password: string
+  name: string
 }
 
-const useProfile = () => {
+const useProfileEdit = () => {
   const queryClient = useQueryClient()
 
-  const editProfile = async (data) => {
+  const editProfile = async (data: ProfileEditFormData) => {
     const res = await fetch(`/api/user`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     })
 
-    return await res.json()
+    const { user } = await res.json()
+
+    return user
   }
 
   const mutation = useMutation(editProfile, {
@@ -28,4 +29,4 @@ const useProfile = () => {
   return mutation
 }
 
-export default useProfile
+export default useProfileEdit

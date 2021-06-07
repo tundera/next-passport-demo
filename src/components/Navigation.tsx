@@ -17,11 +17,13 @@ import {
 import NextLink from 'next/link'
 import { FC, useRef } from 'react'
 import { Menu as MenuIcon } from 'react-feather'
+
 import NavButton from 'src/components/NavButton'
 import SettingsButton from 'src/components/SettingsButton'
 import DarkModeToggle from 'src/components/DarkModeToggle'
 import LocaleButton from 'src/components/LocaleButton'
 import { useCurrentUser } from 'src/lib/hooks'
+import useLogout from 'src/hooks/useLogout'
 
 interface Props {
   disclosure: ReturnType<typeof useDisclosure>
@@ -34,6 +36,12 @@ const Navigation: FC<Props> = ({ disclosure }) => {
   const bg = useColorModeValue('whiteAlpha.900', 'indigo.700')
   const color = useColorModeValue('indigo.500', 'whiteAlpha.900')
   const iconColor = useColorModeValue('gray.800', 'inherit')
+
+  const mutation = useLogout()
+
+  const handleSubmit = () => {
+    mutation.mutate()
+  }
 
   useOutsideClick({
     ref: ref,
@@ -115,11 +123,9 @@ const Navigation: FC<Props> = ({ disclosure }) => {
               </NextLink>
             )}
             {data ? (
-              <NextLink href="/logout" passHref>
-                <Button as="a" w="full" variant="ghost" onClick={disclosure.onClose}>
-                  Sign Out
-                </Button>
-              </NextLink>
+              <Button w="full" variant="ghost" onClick={handleSubmit}>
+                Sign Out
+              </Button>
             ) : (
               <NextLink href="/login" passHref>
                 <Button as="a" w="full" variant="ghost" onClick={disclosure.onClose}>

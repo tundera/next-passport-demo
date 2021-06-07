@@ -17,8 +17,8 @@ const useSignUp = () => {
     })
 
     if (res.status === 201) {
-      const account = await res.json()
-      return account
+      const { user } = await res.json()
+      return user
     } else {
       throw new Error(await res.text())
     }
@@ -26,7 +26,7 @@ const useSignUp = () => {
 
   const mutation = useMutation(signUp, {
     onSuccess: (data) => {
-      queryClient.setQueryData('currentUser', data)
+      console.log('New User:', data)
     },
   })
 

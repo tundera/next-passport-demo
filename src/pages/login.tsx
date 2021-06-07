@@ -62,7 +62,7 @@ const LoginPage: PageComponent = () => {
   return (
     <>
       <Heading as="h1" my="4">
-        Login to Example
+        Login
       </Heading>
 
       <form action="#" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
