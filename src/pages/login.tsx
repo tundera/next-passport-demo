@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react'
 import { User, Lock } from 'react-feather'
 
-import { useCurrentUser } from 'src/lib/hooks'
+import useCurrentUser from 'src/hooks/useCurrentUser'
 import { getLayout } from 'src/layouts/MainLayout'
 import { useForm } from 'react-hook-form'
 

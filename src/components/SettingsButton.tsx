@@ -12,7 +12,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import { User } from 'react-feather'
-import { useCurrentUser } from 'src/lib/hooks'
+import useCurrentUser from 'src/hooks/useCurrentUser'
 import useLogout from 'src/hooks/useLogout'
 
 const SettingsButton: FC = () => {

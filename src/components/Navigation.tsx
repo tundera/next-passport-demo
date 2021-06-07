@@ -22,7 +22,7 @@ import NavButton from 'src/components/NavButton'
 import SettingsButton from 'src/components/SettingsButton'
 import DarkModeToggle from 'src/components/DarkModeToggle'
 import LocaleButton from 'src/components/LocaleButton'
-import { useCurrentUser } from 'src/lib/hooks'
+import useCurrentUser from 'src/hooks/useCurrentUser'
 import useLogout from 'src/hooks/useLogout'
 
 interface Props {

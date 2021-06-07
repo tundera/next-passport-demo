@@ -3,7 +3,7 @@ import type { PageComponent } from 'types'
 import { useState, useEffect } from 'react'
 import Router from 'next/router'
 import Link from 'next/link'
-import { useCurrentUser } from 'src/lib/hooks'
+import useCurrentUser from 'src/hooks/useCurrentUser'
 import {
   ButtonGroup,
   Button,

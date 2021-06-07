@@ -16,7 +16,7 @@ import { useQueryClient } from 'react-query'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { getLayout } from 'src/layouts/MainLayout'
-import { useCurrentUser } from 'src/lib/hooks'
+import useCurrentUser from 'src/hooks/useCurrentUser'
 import useProfileEdit from 'src/hooks/useProfileEdit'
 
 type ProfileEditInputs = {

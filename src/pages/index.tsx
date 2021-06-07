@@ -5,11 +5,9 @@ import { Stack, Heading } from '@chakra-ui/react'
 
 import { getLayout } from 'src/layouts/MainLayout'
 import UsersGrid from 'src/components/UsersGrid'
-import { useUsers } from 'src/lib/hooks'
-import { useCurrentUser } from 'src/lib/hooks'
+import useUsers from 'src/hooks/useUsers'
 
 const HomePage: PageComponent = () => {
-  const { data: user } = useCurrentUser()
   const { data: users } = useUsers()
 
   return (
