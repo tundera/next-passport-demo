@@ -26,7 +26,7 @@ import { useForm } from 'react-hook-form'
 import useLogin from 'src/hooks/useLogin'
 
 type LoginInputs = {
-  username: string
+  email: string
   password: string
 }
 
@@ -66,9 +66,9 @@ const LoginPage: PageComponent = () => {
 
       <form action="#" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing="4">
-          <FormControl isInvalid={!!formState.errors.username}>
+          <FormControl isInvalid={!!formState.errors.email}>
             <VisuallyHidden>
-              <FormLabel htmlFor="username">Username</FormLabel>
+              <FormLabel htmlFor="email">Username</FormLabel>
             </VisuallyHidden>
             <Flex position="relative" alignItems="center" justifyContent="space-between">
               <chakra.span mr="4">
@@ -76,16 +76,16 @@ const LoginPage: PageComponent = () => {
               </chakra.span>
               <Input
                 type="text"
-                name="username"
+                name="email"
                 required
                 placeholder="Your Username"
                 _placeholder={{ color: 'gray.400' }}
-                {...register('username', { validate: validateUsername })}
+                {...register('email', { validate: validateUsername })}
               />
             </Flex>
-            {formState.errors.username && formState.touchedFields.username && (
+            {formState.errors.email && formState.touchedFields.email && (
               <Flex justifyContent="center">
-                <FormErrorMessage>{formState.errors.username?.message}</FormErrorMessage>
+                <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
               </Flex>
             )}
           </FormControl>

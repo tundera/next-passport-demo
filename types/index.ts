@@ -21,7 +21,7 @@ export declare type PageComponent<P = {}, IP = P> = NextPage<P, IP> & {
 export interface User {
   id: string
   createdAt: number
-  username: string
+  email: string
   name: string
   hash: string
   salt: string

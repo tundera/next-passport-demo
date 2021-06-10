@@ -13,7 +13,7 @@ const UsersGrid: FC<Props> = ({ users }) => {
 
   return (
     <SimpleGrid columns={[2, null, 3]} spacing="8" mx="40">
-      {users.map(({ id, name, username }) => (
+      {users.map(({ id, name, email }) => (
         <MotionBox
           w="40"
           key={id}
@@ -28,7 +28,7 @@ const UsersGrid: FC<Props> = ({ users }) => {
         >
           <Stack align="center" py="4">
             <Text fontSize="xl">{name}</Text>
-            <Tag>{username}</Tag>
+            <Tag>{email}</Tag>
           </Stack>
         </MotionBox>
       ))}

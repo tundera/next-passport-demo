@@ -8,7 +8,7 @@ export function getAllUsers(req: AuthApiRequest) {
   return req.session.users
 }
 
-export function createUser(req, { username, password, name }) {
+export function createUser(req, { email, password, name }) {
   // Here you should create the user and save the salt and hashed password (some dbs may have
   // authentication methods that will do it for you so you don't have to worry about it):
   const salt = crypto.randomBytes(16).toString('hex')
@@ -16,7 +16,7 @@ export function createUser(req, { username, password, name }) {
   const user = {
     id: uuidv4(),
     createdAt: Date.now(),
-    username,
+    email,
     name,
     hash,
     salt,
@@ -27,16 +27,16 @@ export function createUser(req, { username, password, name }) {
   req.session.users.push(user)
 }
 
-export function findUserByUsername(req, username) {
+export function findUserByEmail(req, email) {
   // Here you find the user based on id/username in the database
   // const user = await db.findUserById(id)
-  return req.session.users.find((user) => user.username === username)
+  return req.session.users.find((user) => user.email === email)
 }
 
-export function updateUserByUsername(req, username, update) {
+export function updateUserByPassword(req, email, update) {
   // Here you update the user based on id/username in the database
   // const user = await db.updateUserById(id, update)
-  const user = req.session.users.find((u) => u.username === username)
+  const user = req.session.users.find((u) => u.email === email)
   Object.assign(user, update)
   return user
 }
@@ -44,7 +44,7 @@ export function updateUserByUsername(req, username, update) {
 export function deleteUser(req) {
   // Here you should delete the user in the database
   // await db.deleteUser(req.user)
-  req.session.users = req.session.users.filter((user: User) => user.username !== req.user.username)
+  req.session.users = req.session.users.filter((user: User) => user.email !== req.user.email)
 }
 
 // Compare the password of an already fetched user (using `findUserByUsername`) and compare the

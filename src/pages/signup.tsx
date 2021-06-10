@@ -20,7 +20,7 @@ import { getLayout } from 'src/layouts/MainLayout'
 import useSignUp from 'src/hooks/useSignUp'
 
 type SignUpInputs = {
-  username: string
+  email: string
   password: string
   rpassword: string
   name: string
@@ -42,7 +42,7 @@ const SignupPage: PageComponent = () => {
 
   function validateUsername(value: string | undefined) {
     if (!value) {
-      return 'Username is required'
+      return 'Email is required'
     } else return true
   }
 
@@ -78,19 +78,19 @@ const SignupPage: PageComponent = () => {
       {errorMsg && <p className="error">{errorMsg}</p>}
 
       <form action="#" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={!!formState.errors.username}>
-          <FormLabel htmlFor="username">Username</FormLabel>
+        <FormControl isInvalid={!!formState.errors.email}>
+          <FormLabel htmlFor="email">Email</FormLabel>
           <Input
             type="text"
-            name="username"
+            name="email"
             required
-            placeholder="Your Username"
+            placeholder="Your Email"
             _placeholder={{ color: 'gray.400' }}
-            {...register('username', { validate: validateUsername })}
+            {...register('email', { validate: validateUsername })}
           />
-          {formState.errors.username && formState.touchedFields.username && (
+          {formState.errors.email && formState.touchedFields.email && (
             <Flex justifyContent="center">
-              <FormErrorMessage>{formState.errors.username?.message}</FormErrorMessage>
+              <FormErrorMessage>{formState.errors.email?.message}</FormErrorMessage>
             </Flex>
           )}
         </FormControl>

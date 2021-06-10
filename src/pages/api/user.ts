@@ -2,7 +2,7 @@ import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
 import auth from 'src/middleware/auth'
-import { deleteUser, updateUserByUsername } from 'src/lib/db'
+import { deleteUser, updateUserByPassword } from 'src/lib/db'
 
 const handler: AuthApiHandler = nc()
 
@@ -11,8 +11,8 @@ handler
   .get((req, res) => {
     // You do not generally want to return the whole user object
     // because it may contain sensitive field such as !!password!! Only return what needed
-    // const { name, username, favoriteColor } = req.user
-    // res.json({ user: { name, username, favoriteColor } })
+    // const { name, email, favoriteColor } = req.user
+    // res.json({ user: { name, email, favoriteColor } })
     res.json({ user: req.user })
   })
   .use((req, res, next) => {
@@ -26,7 +26,7 @@ handler
   })
   .put((req, res) => {
     const { name } = req.body
-    const user = updateUserByUsername(req, req.user.username, { name })
+    const user = updateUserByPassword(req, req.user.email, { name })
     res.json({ user })
   })
   .delete((req, res) => {
