@@ -40,7 +40,7 @@ const SignupPage: PageComponent = () => {
 
   const { handleSubmit, register, formState, getValues } = useForm<SignUpInputs>()
 
-  function validateUsername(value: string | undefined) {
+  function validateEmail(value: string | undefined) {
     if (!value) {
       return 'Email is required'
     } else return true
@@ -86,7 +86,7 @@ const SignupPage: PageComponent = () => {
             required
             placeholder="Your Email"
             _placeholder={{ color: 'gray.400' }}
-            {...register('email', { validate: validateUsername })}
+            {...register('email', { validate: validateEmail })}
           />
           {formState.errors.email && formState.touchedFields.email && (
             <Flex justifyContent="center">

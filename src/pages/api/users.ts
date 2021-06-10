@@ -19,7 +19,7 @@ handler
     if (!email || !password || !name) {
       return res.status(400).send('Missing fields')
     }
-    // Here you check if the username has already been used
+    // Here you check if the email has already been used
     const emailExisted = !!findUserByEmail(req, email)
     if (emailExisted) {
       return res.status(409).send('The email has already been used')

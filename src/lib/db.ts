@@ -28,13 +28,13 @@ export function createUser(req, { email, password, name }) {
 }
 
 export function findUserByEmail(req, email) {
-  // Here you find the user based on id/username in the database
+  // Here you find the user based on id/email in the database
   // const user = await db.findUserById(id)
   return req.session.users.find((user) => user.email === email)
 }
 
 export function updateUserByPassword(req, email, update) {
-  // Here you update the user based on id/username in the database
+  // Here you update the user based on id/email in the database
   // const user = await db.updateUserById(id, update)
   const user = req.session.users.find((u) => u.email === email)
   Object.assign(user, update)
@@ -47,7 +47,7 @@ export function deleteUser(req) {
   req.session.users = req.session.users.filter((user: User) => user.email !== req.user.email)
 }
 
-// Compare the password of an already fetched user (using `findUserByUsername`) and compare the
+// Compare the password of an already fetched user (using `findUserByEmail`) and compare the
 // password for a potential match
 export function validatePassword(user, inputPassword) {
   const inputHash = crypto.pbkdf2Sync(inputPassword, user.salt, 1000, 64, 'sha512').toString('hex')

@@ -28,7 +28,7 @@ export interface User {
 }
 
 export type CreateUserParams = {
-  username: string
+  email: string
   password: string
   name: string
 }

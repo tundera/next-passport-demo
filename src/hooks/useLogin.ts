@@ -22,7 +22,7 @@ const useLogin = () => {
         const { user } = await res.json()
         return user
       } else {
-        throw new Error('Incorrect username or password.')
+        throw new Error('Incorrect email or password.')
       }
     } catch (error) {
       throw new Error(error)

@@ -42,9 +42,9 @@ const LoginPage: PageComponent = () => {
 
   const mutation = useLogin()
 
-  function validateUsername(value: string | undefined) {
+  function validateEmail(value: string | undefined) {
     if (!value) {
-      return 'Username is required'
+      return 'Email is required'
     } else return true
   }
 
@@ -68,7 +68,7 @@ const LoginPage: PageComponent = () => {
         <Stack spacing="4">
           <FormControl isInvalid={!!formState.errors.email}>
             <VisuallyHidden>
-              <FormLabel htmlFor="email">Username</FormLabel>
+              <FormLabel htmlFor="email">Email</FormLabel>
             </VisuallyHidden>
             <Flex position="relative" alignItems="center" justifyContent="space-between">
               <chakra.span mr="4">
@@ -78,9 +78,9 @@ const LoginPage: PageComponent = () => {
                 type="text"
                 name="email"
                 required
-                placeholder="Your Username"
+                placeholder="Your Email"
                 _placeholder={{ color: 'gray.400' }}
-                {...register('email', { validate: validateUsername })}
+                {...register('email', { validate: validateEmail })}
               />
             </Flex>
             {formState.errors.email && formState.touchedFields.email && (
@@ -91,7 +91,7 @@ const LoginPage: PageComponent = () => {
           </FormControl>
           <FormControl isInvalid={!!formState.errors.password}>
             <VisuallyHidden>
-              <FormLabel htmlFor="password">Username</FormLabel>
+              <FormLabel htmlFor="password">Email</FormLabel>
             </VisuallyHidden>
             <Flex position="relative" alignItems="center" justifyContent="space-between">
               <chakra.span mr="4">

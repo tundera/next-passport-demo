@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query'
 
 type SignUpFormData = {
-  username: string
+  email: string
   password: string
   name: string
 }
