@@ -1367,7 +1367,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express-session@npm:^1":
+"@types/express-session@npm:^1.17.3":
   version: 1.17.3
   resolution: "@types/express-session@npm:1.17.3"
   dependencies:
@@ -1420,10 +1420,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^15.6.2":
+"@types/node@npm:*":
   version: 15.9.0
   resolution: "@types/node@npm:15.9.0"
   checksum: 6ba9033ee00cf2fd260755d7aeeb65d6287f507473e54c1bce0dbd687c03245aff636580c8dc9215bea16cc32096d60344d00a9cb0a110c9baaca885573dc402
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^15.12.2":
+  version: 15.12.2
+  resolution: "@types/node@npm:15.12.2"
+  checksum: 0dff080f306e4d5cd968bd43315238a227b1f54f4bb59fa9cee976535678f00755834c0288315029ae12f78b3db43efb5bfb700cf8aae882f184eb700229f974
   languageName: node
   linkType: hard
 
@@ -1434,7 +1441,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/passport-local@npm:^1":
+"@types/passport-local@npm:^1.0.33":
   version: 1.0.33
   resolution: "@types/passport-local@npm:1.0.33"
   dependencies:
@@ -1455,21 +1462,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/passport@npm:*":
+"@types/passport@npm:*, @types/passport@npm:^1.0.6":
   version: 1.0.6
   resolution: "@types/passport@npm:1.0.6"
   dependencies:
     "@types/express": "*"
   checksum: 0dcdb71bef13c2477e76e4237421e375c07e1f4389af0cf165f83e33716ad6ffeb238836af2fcad1674936844f34ff534fe0456afdb5d3c7f752a3278d30deed
-  languageName: node
-  linkType: hard
-
-"@types/passport@npm:^0":
-  version: 0.4.7
-  resolution: "@types/passport@npm:0.4.7"
-  dependencies:
-    "@types/express": "*"
-  checksum: c22a84226d763db30cc6d8b330022820d067ea4039dc625371825e0d2fb8e3d6e7387cf4619e79a4cc293e8c3f3420f3da3067c564da14c21fadb03b5f5c870f
   languageName: node
   linkType: hard
 
@@ -1494,16 +1492,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17.0.6":
-  version: 17.0.6
-  resolution: "@types/react-dom@npm:17.0.6"
+"@types/react-dom@npm:^17.0.7":
+  version: 17.0.7
+  resolution: "@types/react-dom@npm:17.0.7"
   dependencies:
     "@types/react": "*"
-  checksum: cc167c24a77cef2be8dcabd1bbe8b95c0d713b943b2f1c8a1468c8009c50daad51a46859a217a8383b89bb4ea499937d405699ce8db164f70c871f9d22d703f0
+  checksum: 9b2eb0d86dd00bff5e4a9a4d1892f6ef3dd79434acb5d38a45a8bda8a383cff0a3d7bb58d662c2a5352ab7c92145d5736f56f1bd12e1e3a482727c274bf09434
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17.0.0, @types/react@npm:^17.0.9":
+"@types/react@npm:*, @types/react@npm:^17.0.0":
   version: 17.0.9
   resolution: "@types/react@npm:17.0.9"
   dependencies:
@@ -1511,6 +1509,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: c626e3ca42b6173b0617102af6c1c8c6068f69fafeba51f5d614962cabaf98a5706295081941ece93da04117268cb0aad471be87e76dde7e0d5f79a46280c586
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^17.0.11":
+  version: 17.0.11
+  resolution: "@types/react@npm:17.0.11"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 89e80ee8e08988abca0266e5e131f57b2e18f326bebfa0ed0a06b0bca29621a5a8202d617254a053f659b9c18090c52cae0aa475a6c6036b8858030f1d448e47
   languageName: node
   linkType: hard
 
@@ -1704,15 +1713,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"argon2@npm:^0.28.1":
-  version: 0.28.1
-  resolution: "argon2@npm:0.28.1"
+"argon2@npm:^0.28.2":
+  version: 0.28.2
+  resolution: "argon2@npm:0.28.2"
   dependencies:
     "@mapbox/node-pre-gyp": ^1.0.1
     "@phc/format": ^1.0.0
     node-addon-api: ^3.0.2
     opencollective-postinstall: ^2.0.3
-  checksum: 3fd52a1fb554664e9c8e90232a968e7a735b6e3b69b9f02b920f144036fa28bdadd35ca8eb0903e4f86da83be7ba3b14846d51270615922a89b635e30ee7b73f
+  checksum: 982dff6c23163317a01368b6259560b73b558a54416dc3d423ceb6928c84e5bcb0a96809794395c1646e3b6e8c950ac1154f2402c4f61c9efcd13c376166b1ca
   languageName: node
   linkType: hard
 
@@ -4279,14 +4288,14 @@ fsevents@~2.3.1:
     "@emotion/styled": ^11.3.0
     "@hapi/iron": 6.0.0
     "@hookform/resolvers": ^2.5.2
-    "@types/express-session": ^1
-    "@types/node": ^15.6.2
-    "@types/passport": ^0
-    "@types/passport-local": ^1
-    "@types/react": ^17.0.9
-    "@types/react-dom": ^17.0.6
+    "@types/express-session": ^1.17.3
+    "@types/node": ^15.12.2
+    "@types/passport": ^1.0.6
+    "@types/passport-local": ^1.0.33
+    "@types/react": ^17.0.11
+    "@types/react-dom": ^17.0.7
     a11y-react-emoji: ^1.1.3
-    argon2: ^0.28.1
+    argon2: ^0.28.2
     axios: ^0.21.1
     express-session: ^1.17.2
     framer-motion: ^4.1.17
@@ -4298,16 +4307,16 @@ fsevents@~2.3.1:
     nookies: ^2.5.2
     passport: ^0.4.1
     passport-local: ^1.0.0
-    prettier: ^2.3.0
+    prettier: ^2.3.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-error-boundary: ^3.1.3
     react-feather: ^2.0.9
-    react-hook-form: ^7.8.1
-    react-query: ^3.16.0
+    react-hook-form: ^7.8.3
+    react-query: ^3.16.1
     swr: ^0.5.6
     typescript: ^4.3.2
-    uuidv4: 6.2.8
+    uuidv4: 6.2.10
   languageName: unknown
   linkType: soft
 
@@ -4889,12 +4898,21 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.0.5, prettier@npm:^2.3.0":
+"prettier@npm:^2.0.5":
   version: 2.3.0
   resolution: "prettier@npm:2.3.0"
   bin:
     prettier: bin-prettier.js
   checksum: e8851a45f60f2994775f96e07964646c299b8a8f9c64da4fbd8efafc20db3458bdcedac79aed34e1d5477540b3aa04f6499adc4979cb7937f8ebd058a767d8ff
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "prettier@npm:2.3.1"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 3b37731ff7150feecf19736c77c790e7e276b404ac9af81cbaf87cfecefc48ef9a864f34c2a5caf5955378b8f2525984b8611703a0d9c1f052b4cfa6eb35899f
   languageName: node
   linkType: hard
 
@@ -5136,12 +5154,12 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.8.1":
-  version: 7.8.1
-  resolution: "react-hook-form@npm:7.8.1"
+"react-hook-form@npm:^7.8.3":
+  version: 7.8.3
+  resolution: "react-hook-form@npm:7.8.3"
   peerDependencies:
     react: ^16.8.0 || ^17
-  checksum: 8eb67a49c2a27853397f55b51c18d1640ed65236cd4b53d630f1428625016fb6d51928652d420dd654eef5ff4e8467b37859a8ca410969243ec2ce484807bb92
+  checksum: 598b38ffc754eb46f76193bcbb1da9372f2edb04995175be398d41581d277649f78bbee249b740d7e3d230601a91bd0f05566f8a1601030f916e2808c233965b
   languageName: node
   linkType: hard
 
@@ -5152,9 +5170,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"react-query@npm:^3.16.0":
-  version: 3.16.0
-  resolution: "react-query@npm:3.16.0"
+"react-query@npm:^3.16.1":
+  version: 3.16.1
+  resolution: "react-query@npm:3.16.1"
   dependencies:
     "@babel/runtime": ^7.5.5
     broadcast-channel: ^3.4.1
@@ -5166,7 +5184,7 @@ fsevents@~2.3.1:
       optional: true
     react-native:
       optional: true
-  checksum: d2d62777fdec0b575b465f0875e421ecbbd8ed8cc911eb14fef18138fb59ad481aac2618d46febab8d8feb0de673af0e866854cfc7def103198622dcb37d33fe
+  checksum: 69d5b6db1161246ff151f9a720e5cbef0bfa859ced11a931c95b03875a3f9a0a4315f767206d79727907e10a573f4368c53338ae864f84e30afba6ef6f94e738
   languageName: node
   linkType: hard
 
@@ -6280,13 +6298,13 @@ typescript@^4.3.2:
   languageName: node
   linkType: hard
 
-"uuidv4@npm:6.2.8":
-  version: 6.2.8
-  resolution: "uuidv4@npm:6.2.8"
+"uuidv4@npm:6.2.10":
+  version: 6.2.10
+  resolution: "uuidv4@npm:6.2.10"
   dependencies:
     "@types/uuid": 8.3.0
     uuid: 8.3.2
-  checksum: 2c3606e93745790da231bdf530da9274be13ac29b08157e3bdbd338509abf158933c3af3649544256f0c7aef219c9901ddcf04be8f21186f1af14275aae1e20c
+  checksum: 1247a67edf9df44f3c544440cdc3536a781882ee43311473d6eeb99d47e91e765cc0f052549cea0a89f210518e65f1447167455a44a9521f5f80c63abc81b9c5
   languageName: node
   linkType: hard
 

@@ -10,7 +10,6 @@ passport.serializeUser(function (user: User, done) {
   done(null, user.email)
 })
 
-// @ts-expect-error
 passport.deserializeUser(function (req, id, done) {
   // deserialize the email back into user object
   const user = findUserByEmail(req, id)
