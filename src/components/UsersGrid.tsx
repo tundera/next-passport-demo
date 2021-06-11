@@ -15,7 +15,8 @@ const UsersGrid: FC<Props> = ({ users }) => {
     <SimpleGrid columns={[2, null, 3]} spacing="8" mx="40">
       {users.map(({ id, name, email }) => (
         <MotionBox
-          w="40"
+          w={70}
+          h={35}
           key={id}
           bg={bg}
           borderRadius="32"
@@ -27,8 +28,8 @@ const UsersGrid: FC<Props> = ({ users }) => {
           whileTap={{ scale: 0.9 }}
         >
           <Stack align="center" py="4">
-            <Text fontSize="xl">{name}</Text>
-            <Tag>{email}</Tag>
+            <Text fontSize="4xl">{name}</Text>
+            <Tag fontSize="lg">{email}</Tag>
           </Stack>
         </MotionBox>
       ))}

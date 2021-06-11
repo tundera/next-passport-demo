@@ -2,7 +2,7 @@ import type { AuthApiHandler } from 'types'
 
 import nc from 'next-connect'
 import auth from 'src/middleware/auth'
-import { deleteUser, updateUserByPassword } from 'src/lib/db'
+import { deleteUser, updateUserByEmail } from 'src/lib/db'
 
 const handler: AuthApiHandler = nc()
 
@@ -26,7 +26,7 @@ handler
   })
   .put((req, res) => {
     const { name } = req.body
-    const user = updateUserByPassword(req, req.user.email, { name })
+    const user = updateUserByEmail(req, req.user.email, { name })
     res.json({ user })
   })
   .delete((req, res) => {

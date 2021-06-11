@@ -33,7 +33,7 @@ export function findUserByEmail(req, email) {
   return req.session.users.find((user) => user.email === email)
 }
 
-export function updateUserByPassword(req, email, update) {
+export function updateUserByEmail(req, email, update) {
   // Here you update the user based on id/email in the database
   // const user = await db.updateUserById(id, update)
   const user = req.session.users.find((u) => u.email === email)
