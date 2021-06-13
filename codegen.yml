@@ -1,0 +1,15 @@
+schema: ${NEXT_PUBLIC_GRAPHQL_API_URL}
+
+# documents: './src/lib/graphql/operations/**/*.graphql'
+generates:
+  ./src/lib/graphql/codegen.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-query
+    config:
+      fetcher: graphql-request
+      useTypeImports: true
+# hooks:
+#   afterAllFileWrite:
+#     - eslint --fix
